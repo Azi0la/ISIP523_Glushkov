@@ -37,16 +37,16 @@ namespace Pr_PC_Builder.Pages
         }
 
         private void TypeList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            Button btn = sender as Button;
-            basepart_ selectpart = btn.DataContext as basepart_;
+         {
+            
+            basepart_ selectpart = TypeList.SelectedItem as basepart_;
             int index = MainWindow.ass.partlist.IndexOf(MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == selectpart.parttypeid));
             MainWindow.ass.partlist.RemoveAt(index);
             MainWindow.ass.partlist.Insert(index, selectpart);
 
             if (NavigationService.CanGoBack)
             {
-                NavigationService.GoBack();
+                NavigationService.Navigate(new MainPage());
             }
         }
     }
