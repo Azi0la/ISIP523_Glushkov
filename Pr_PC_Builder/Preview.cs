@@ -21,7 +21,8 @@ namespace Pr_PC_Builder
                     switch (parttypeid)
                     {
                         case 1:
-                            return $"{name} {cpu_.socket_.name} \n" +
+                            return $"{name} \n" +
+                                $"Сокет: {cpu_.socket_.name} \n" +
                                 $"{cpu_.numberofcores} ядер \n" +
                                 $"{cpu_.basecorefrequency}ГГц- " +
                                 $"{cpu_.maxcorefrequency} макс. ГГц \n" +
@@ -48,7 +49,8 @@ namespace Pr_PC_Builder
                                 $"Производитель: {manufacturer_.name} \n" +
                                 $"Цена: {price}";
                         case 4:
-                            return $"{name} Сокет:{motherboard_.socket_.name} \n" +
+                            return $"{name} \n" +
+                                $"Сокет:{motherboard_.socket_.name} \n" +
                                 $"Форм-фактор: {motherboard_.formfactor_.name} \n" +
                                 $"Слотов памяти: {motherboard_.memoryslots} \n" +
                                 $"Тип памяти: {motherboard_.memorytype_.name}  \n" +

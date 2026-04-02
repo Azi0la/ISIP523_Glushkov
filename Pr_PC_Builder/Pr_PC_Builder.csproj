@@ -121,6 +121,9 @@
     <Compile Include="Pages\PartPage.xaml.cs">
       <DependentUpon>PartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SavedPage.xaml.cs">
+      <DependentUpon>SavedPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="partassembly_.cs">
       <DependentUpon>Model_PC_build.tt</DependentUpon>
     </Compile>
@@ -182,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\PartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SavedPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

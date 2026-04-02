@@ -35,9 +35,45 @@ namespace Pr_PC_Builder.Pages
             case_ casee = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 5).case_;
             powersupply_ powersupply = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 6).powersupply_;
             processorcooler_ processorcooler = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 7).processorcooler_;
+            storagedevice_ storagedevice = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 8).storagedevice_;
 
-
-
+            if (cpu != null && motherboard != null)
+            {
+                if(cpu.socketid != motherboard.socketid)
+                {
+                    CompatTB.Text += ("ОШИБКА: Сокеты процессора и \nмат. платы несовместимы! \n");
+                }
+            }
+            if (casee != null && motherboard != null)
+            {
+                if (casee.sizeid != motherboard.formfactorid)
+                {
+                    CompatTB.Text += ("ОШИБКА Размер корпуса и \nформ-фактор мат. платы несовместимы! \n");
+                    CompatBTN.IsEnabled = false;
+                }
+            }
+            if(motherboard != null && ram != null)
+            {
+                if(motherboard.memorytypeid != ram.memorytypeid)
+                {
+                    CompatTB.Text += ("ОШИБКА Типы памяти у мат. платы и \nОЗУ несовместимы! \n");
+                    CompatBTN.IsEnabled = false;
+                }
+            }
+            if (gpu != null && powersupply != null)
+            {
+                if (gpu.recommendpower > powersupply.power)
+                {
+                    CompatTB.Text += ("ОШИБКА Мощность блока питания и \nпотребление мощности видеокарты\n несовместимы\n");
+                    CompatBTN.IsEnabled = false;
+                }
+            }
+            if(cpu != null && gpu != null && ram != null && motherboard != null && casee != null && powersupply != null && processorcooler != null && storagedevice != null)
+            {
+                if(cpu.socketid == motherboard.socketid && casee.sizeid == motherboard.formfactorid && motherboard.memorytypeid == ram.memorytypeid && gpu.recommendpower <= powersupply.power)
+                CompatTB.Text += ("Сборка совместима!");
+                CompatBTN.IsEnabled = true;
+            }
 
 
             if (UnitList.SelectedItem != null)
@@ -53,6 +89,16 @@ namespace Pr_PC_Builder.Pages
             NavigationService.Navigate(new PartPage(pt));
         }
 
-        
+        private void CompatBTN_Click(object sender, RoutedEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(NameTB.Text))
+            {
+                //Прописать переход на страницу сэйвов
+            }
+            else
+            {
+                MessageBox.Show("Введите название для сборки!");
+            }
+        }
     }
 }

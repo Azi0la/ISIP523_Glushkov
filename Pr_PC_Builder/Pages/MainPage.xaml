@@ -16,8 +16,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label x:Name="CompatLabel" Grid.Column="1" Content="" FontSize="20"/>
-
+        
 
         <ListBox x:Name="UnitList" Grid.Column="0" Margin="10" ScrollViewer.HorizontalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListBox.ItemTemplate>
@@ -27,11 +26,24 @@
                         <StackPanel>
                             <TextBlock Text="{Binding preview}" Margin="15, 0, 15, 0"></TextBlock>
                         </StackPanel>
-                        <Button x:Name="Butt1" Height="50" Width="80" Margin="0, 0, 0, 0" Content="Добавить" Click="Change_Click"/>
+                        <Button x:Name="Butt1" Height="50" Width="80" Margin="0, 0, 0, 0" Content="Выбрать" Click="Change_Click"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+
+        <StackPanel Grid.Column="1">
+            <Label x:Name="CompatLabel" Grid.Column="1" Content="Состояние сборки:" FontSize="20"/>
+            <TextBox x:Name="CompatTB" Text="" Height="100" Margin="10"/>
+            <Label x:Name="NameLabel" Grid.Column="1" Content="Название сборки:" FontSize="15" Margin="0, 50,0,0"/>
+            <TextBox x:Name="NameTB" Text="" Height="30" Margin="10"/>
+            <StackPanel Orientation="Horizontal">
+                <Label x:Name="PriceLabel" Grid.Column="1" Content="Цена:" FontSize="15" Margin="0, 15,0,0"/>
+                <Label x:Name="RealPriceLabel" Grid.Column="1" Content="" FontSize="15" Margin="0, 15,0,0"/>
+            </StackPanel>
+        </StackPanel>
+        <Button x:Name="SavedBTN" Grid.Column="1" Width="100" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10" Content="К сохраненным &#x0a;      сборкам"/>
+        <Button x:Name="CompatBTN" Grid.Column="1" Width="100" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Content="Сохранить &#x0a;   сборку" IsEnabled="False" Click="CompatBTN_Click"/>
 
 
     </Grid>

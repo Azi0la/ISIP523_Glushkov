@@ -43,6 +43,8 @@ namespace Pr_PC_Builder.Pages
             int index = MainWindow.ass.partlist.IndexOf(MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == selectpart.parttypeid));
             MainWindow.ass.partlist.RemoveAt(index);
             MainWindow.ass.partlist.Insert(index, selectpart);
+            
+            
 
             if (NavigationService.CanGoBack)
             {
