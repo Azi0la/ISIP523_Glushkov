@@ -16,14 +16,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!--<Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <Label x:Name="CompatLabel" Grid.Column="1" Content="" FontSize="20"/>
 
-            
-        </Grid>-->
 
         <ListBox x:Name="UnitList" Grid.Column="0" Margin="10" ScrollViewer.HorizontalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListBox.ItemTemplate>
@@ -33,7 +27,7 @@
                         <StackPanel>
                             <TextBlock Text="{Binding preview}" Margin="15, 0, 15, 0"></TextBlock>
                         </StackPanel>
-                        <Button x:Name="Butt1" Height="50" Width="80" Margin="120, 0, 0, 0" Content="Добавить" Click="Change_Click"/>
+                        <Button x:Name="Butt1" Height="50" Width="80" Margin="0, 0, 0, 0" Content="Добавить" Click="Change_Click"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

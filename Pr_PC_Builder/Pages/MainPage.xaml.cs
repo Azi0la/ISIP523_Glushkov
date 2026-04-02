@@ -27,13 +27,23 @@ namespace Pr_PC_Builder.Pages
         {
             InitializeComponent();
             UnitList.ItemsSource = MainWindow.ass.partlist;
-            //basepart_ baza = new basepart_{ id = 101, name = "AAAA",
-            //manufacturerid = 1,
-            //price = 200,
-            //parttypeid = 2,
-            //image = ""};
-            //basepart_ smth = 
-            //MessageBox.Show(baza.parttype_.name);
+
+            cpu_ cpu = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 1).cpu_;
+            gpu_ gpu = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 2).gpu_;
+            ram_ ram = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 3).ram_;
+            motherboard_ motherboard = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 4).motherboard_;
+            case_ casee = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 5).case_;
+            powersupply_ powersupply = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 6).powersupply_;
+            processorcooler_ processorcooler = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 7).processorcooler_;
+
+
+
+
+
+            if (UnitList.SelectedItem != null)
+            {
+                //Добавить сюда либо пропажу кнопки добавления, либо поменять на изменение, но пока я хз как обратиться
+            }
         }
         private void Change_Click(object sender, RoutedEventArgs e)
         {
@@ -42,5 +52,7 @@ namespace Pr_PC_Builder.Pages
             parttype_ pt = Types.FirstOrDefault(type => type.id == selectedPart.parttypeid);
             NavigationService.Navigate(new PartPage(pt));
         }
+
+        
     }
 }
