@@ -29,12 +29,7 @@ namespace Pr_PC_Builder.Pages
             InitializeComponent();
             SavedList.ItemsSource = FullBundle;
 
-            decimal money = 0;
-            foreach (var item in MainWindow.ass.partlist)
-            {
-                money += item.price;
-            }
-            //RealPriceLabel.Content = money;
+            
         }
 
         private void BackBTN_Click(object sender, RoutedEventArgs e)
@@ -48,6 +43,26 @@ namespace Pr_PC_Builder.Pages
         private void SavedList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             
+        }
+
+        private void DelBTN_Click(object sender, RoutedEventArgs e)
+        {
+            if(SavedList.SelectedItem != null)
+            {
+                assembly_ AssToRemove = SavedList.SelectedItem as assembly_;
+                List<partassembly_> PartsToRemove = Fullparts.Where(p => p.assemblyid == AssToRemove.id).ToList();
+                foreach(var item in PartsToRemove)
+                {
+                    Core.Context.partassembly_.Remove(item);
+                }
+                Core.Context.assembly_.Remove(AssToRemove);
+                Core.Context.SaveChanges();
+                
+            }
+            else
+            {
+                MessageBox.Show("Выберите сборку для удаления!");
+            }
         }
     }
 }

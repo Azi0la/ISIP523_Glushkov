@@ -63,7 +63,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Assemble.cs" />
+    <Compile Include="Classes\Assemble.cs" />
     <Compile Include="assembly_.cs">
       <DependentUpon>Model_PC_build.tt</DependentUpon>
     </Compile>
@@ -82,7 +82,7 @@
     <Compile Include="certificate_.cs">
       <DependentUpon>Model_PC_build.tt</DependentUpon>
     </Compile>
-    <Compile Include="Core.cs" />
+    <Compile Include="Classes\Core.cs" />
     <Compile Include="cpu_.cs">
       <DependentUpon>Model_PC_build.tt</DependentUpon>
     </Compile>
@@ -92,7 +92,7 @@
     <Compile Include="formfactor_.cs">
       <DependentUpon>Model_PC_build.tt</DependentUpon>
     </Compile>
-    <Compile Include="FullHouse.cs" />
+    <Compile Include="Classes\FullHouse.cs" />
     <Compile Include="gpuinterface_.cs">
       <DependentUpon>Model_PC_build.tt</DependentUpon>
     </Compile>
@@ -134,7 +134,7 @@
     <Compile Include="powersupply_.cs">
       <DependentUpon>Model_PC_build.tt</DependentUpon>
     </Compile>
-    <Compile Include="Preview.cs" />
+    <Compile Include="Classes\Preview.cs" />
     <Compile Include="processorcooler_.cs">
       <DependentUpon>Model_PC_build.tt</DependentUpon>
     </Compile>
@@ -162,7 +162,7 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model_PC_build.tt</DependentUpon>
     </Compile>
-    <Compile Include="TypePart.cs" />
+    <Compile Include="Classes\TypePart.cs" />
     <Compile Include="videoconnectorgpu_.cs">
       <DependentUpon>Model_PC_build.tt</DependentUpon>
     </Compile>
@@ -257,8 +257,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -113,10 +113,10 @@ namespace Pr_PC_Builder.Pages
                         partid = item.id,
                         assemblyid = MainWindow.assemble.id
                     };
-                    Core.Context.partassembly_.Add(MainWindow.partass);
-                    Core.Context.SaveChanges();
-                    NavigationService.Navigate(new SavedPage());
+                    Core.Context.partassembly_.Add(MainWindow.partass);      
                 }
+                Core.Context.SaveChanges();
+                NavigationService.Navigate(new SavedPage());
             }
             else
             {
