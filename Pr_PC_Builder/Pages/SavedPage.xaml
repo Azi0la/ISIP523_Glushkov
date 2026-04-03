@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="1">
-            <Label Margin="0, 15, 0, 0" Content="Сохраненные сборки: " FontSize="25"/>
+         <Label Margin="0, 15, 0, 0" Content="Сохраненные сборки: " FontSize="25"/>
             <ListBox x:Name="SavedList" Height="300" Margin="15" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -27,6 +27,7 @@
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel>
+                                            <!--Листбокс в листбоксе, это Окси-->
                                             <TextBlock Text="{Binding basepart_.name}"/>
                                         </StackPanel>
                                     </DataTemplate>
