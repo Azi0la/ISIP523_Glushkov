@@ -37,11 +37,20 @@ namespace Pr_PC_Builder.Pages
             processorcooler_ processorcooler = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 7).processorcooler_;
             storagedevice_ storagedevice = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 8).storagedevice_;
 
+            decimal money = 0;
+
+            foreach( var item in MainWindow.ass.partlist)
+            {
+                money += item.price;
+            }
+            RealPriceLabel.Content = money;
+
             if (cpu != null && motherboard != null)
             {
                 if(cpu.socketid != motherboard.socketid)
                 {
                     CompatTB.Text += ("ОШИБКА: Сокеты процессора и \nмат. платы несовместимы! \n");
+                    CompatBTN.IsEnabled = false;
                 }
             }
             if (casee != null && motherboard != null)
