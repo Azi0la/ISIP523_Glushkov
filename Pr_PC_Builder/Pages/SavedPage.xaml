@@ -10,6 +10,24 @@
       Background="Salmon">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="1">
+            <Label Margin="0, 15, 0, 0" Content="Сохраненные сборки: " FontSize="25"/>
+            <ListBox x:Name="SavedList" Height="300" Margin="15" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding name}"/>
+                            <TextBlock Text="{Binding author}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        <Button x:Name="BackBTN" Width="100" Height="60" VerticalAlignment="Bottom" Margin="25" Content="Назад" FontSize="25" Click="BackBTN_Click"/>
     </Grid>
 </Page>

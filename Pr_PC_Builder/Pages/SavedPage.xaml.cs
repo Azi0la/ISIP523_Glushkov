@@ -20,9 +20,21 @@ namespace Pr_PC_Builder.Pages
     /// </summary>
     public partial class SavedPage : Page
     {
+        public List <partassembly_> Fullparts = Core.Context.partassembly_.ToList ();
+        public List<assembly_> FullBundle = Core.Context.assembly_.ToList();
+
         public SavedPage()
         {
             InitializeComponent();
+            SavedList.ItemsSource = FullBundle;
+        }
+
+        private void BackBTN_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+            }
         }
     }
 }

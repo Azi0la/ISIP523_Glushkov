@@ -100,14 +100,37 @@ namespace Pr_PC_Builder.Pages
 
         private void CompatBTN_Click(object sender, RoutedEventArgs e)
         {
-            if (!String.IsNullOrEmpty(NameTB.Text))
+            if (!String.IsNullOrEmpty(NameTB.Text) && !String.IsNullOrEmpty(AuthorTB.Text))
             {
                 //Прописать переход на страницу сэйвов
+                MainWindow.assemble = new assembly_
+                {
+                    name = NameTB.Text,
+                    author = AuthorTB.Text
+                };
+                Core.Context.assembly_.Add(MainWindow.assemble);
+                Core.Context.SaveChanges();
+                foreach(var item in MainWindow.ass.partlist)
+                {
+                    MainWindow.partass = new partassembly_
+                    {
+                        partid = item.id,
+                        assemblyid = MainWindow.assemble.id
+                    };
+                    Core.Context.partassembly_.Add(MainWindow.partass);
+                    Core.Context.SaveChanges();
+                    NavigationService.Navigate(new SavedPage());
+                }
             }
             else
             {
-                MessageBox.Show("Введите название для сборки!");
+                MessageBox.Show("Не заполнены название и имя автора сборки!");
             }
+        }
+
+        private void SavedBTN_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new SavedPage());
         }
     }
 }
