@@ -23,6 +23,15 @@
                         <StackPanel>
                             <TextBlock Text="{Binding name}"/>
                             <TextBlock Text="{Binding author}"/>
+                            <ListBox ItemsSource="{Binding partassembly_}" x:Name="SavedItemList" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding basepart_.name}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

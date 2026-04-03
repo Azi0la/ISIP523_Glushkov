@@ -85,10 +85,6 @@ namespace Pr_PC_Builder.Pages
             }
 
 
-            if (UnitList.SelectedItem != null)
-            {
-                //Добавить сюда либо пропажу кнопки добавления, либо поменять на изменение, но пока я хз как обратиться
-            }
         }
         private void Change_Click(object sender, RoutedEventArgs e)
         {
