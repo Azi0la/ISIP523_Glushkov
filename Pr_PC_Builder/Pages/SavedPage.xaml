@@ -11,18 +11,20 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="313*"/>
+            <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="1">
-         <Label Margin="0, 15, 0, 0" Content="Сохраненные сборки: " FontSize="25"/>
-            <ListBox x:Name="SavedList" Height="300" Margin="15" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Grid.Column="1" Grid.ColumnSpan="2">
+            <Label Margin="0, 15, 0, 0" Content="Сохраненные сборки: " FontSize="25"/>
+            <ListBox x:Name="SavedList" Height="300" Margin="15" ScrollViewer.HorizontalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="SavedList_MouseDoubleClick">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
                             <TextBlock Text="{Binding name}"/>
                             <TextBlock Text="{Binding author}"/>
+                            <TextBlock Text="{Binding FullPrice}"/>
                             <ListBox ItemsSource="{Binding partassembly_}" x:Name="SavedItemList" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
@@ -38,6 +40,6 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
-        <Button x:Name="BackBTN" Width="100" Height="60" VerticalAlignment="Bottom" Margin="25" Content="Назад" FontSize="25" Click="BackBTN_Click"/>
+        <Button x:Name="BackBTN" Width="100" Height="60" VerticalAlignment="Top" Margin="30,365,30,0" Content="Назад" FontSize="25" Click="BackBTN_Click"/>
     </Grid>
 </Page>

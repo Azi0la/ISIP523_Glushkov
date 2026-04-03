@@ -92,6 +92,7 @@
     <Compile Include="formfactor_.cs">
       <DependentUpon>Model_PC_build.tt</DependentUpon>
     </Compile>
+    <Compile Include="FullHouse.cs" />
     <Compile Include="gpuinterface_.cs">
       <DependentUpon>Model_PC_build.tt</DependentUpon>
     </Compile>

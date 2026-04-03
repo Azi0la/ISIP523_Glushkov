@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,6 +28,13 @@ namespace Pr_PC_Builder.Pages
         {
             InitializeComponent();
             SavedList.ItemsSource = FullBundle;
+
+            decimal money = 0;
+            foreach (var item in MainWindow.ass.partlist)
+            {
+                money += item.price;
+            }
+            //RealPriceLabel.Content = money;
         }
 
         private void BackBTN_Click(object sender, RoutedEventArgs e)
@@ -35,6 +43,11 @@ namespace Pr_PC_Builder.Pages
             {
                 NavigationService.GoBack();
             }
+        }
+
+        private void SavedList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            
         }
     }
 }
