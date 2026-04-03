@@ -12,9 +12,10 @@ namespace Pr_PC_Builder
         { get 
             
             {
-                List<basepart_> baseparts = Core.Context.basepart_.ToList();
-                baseparts = baseparts.Where(b => b.partassembly_.Where(a => a.assemblyid == id).ToList() != new List<partassembly_>()).ToList();
-                return baseparts.Select(b => b.price).ToList().Sum().ToString();
+               return partassembly_.Sum(p => p.basepart_.price).ToString();
+               // List<basepart_> baseparts = Core.Context.basepart_.ToList();
+               // baseparts = baseparts.Where(b => b.partassembly_.Where(a => a.assemblyid == id).ToList() != new List<partassembly_>()).ToList();
+               // return baseparts.Select(b => b.price).ToList().Sum().ToString();
             }
         }
     }
