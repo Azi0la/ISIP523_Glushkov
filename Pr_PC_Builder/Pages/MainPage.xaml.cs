@@ -22,11 +22,14 @@ namespace Pr_PC_Builder.Pages
     {
 
         public List<parttype_> Types = Core.Context.parttype_.ToList();
+        public List<assembly_> Users = Core.Context.assembly_.ToList();
         
         public MainPage()
         {
             InitializeComponent();
             UnitList.ItemsSource = Assemble.partlist;
+            NameTB.Text = Core.n;
+            AuthorTB.Text = Core.a;
 
             cpu_ cpu = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 1).cpu_;
             gpu_ gpu = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 2).gpu_;
@@ -98,25 +101,51 @@ namespace Pr_PC_Builder.Pages
         {
             if (!String.IsNullOrEmpty(NameTB.Text) && !String.IsNullOrEmpty(AuthorTB.Text))
             {
-                //Прописать переход на страницу сэйвов
-                MainWindow.assemble = new assembly_
+                assembly_ beb = Users.FirstOrDefault(p => p.name == NameTB.Text && p.author == AuthorTB.Text);
+                //List<partassembly_> changelist = Core.Context.partassembly_.Where(p => p.assembly_ == beb).ToList();
+                if (beb != null)
                 {
-                    name = NameTB.Text,
-                    author = AuthorTB.Text
-                };
-                Core.Context.assembly_.Add(MainWindow.assemble);
-                Core.Context.SaveChanges();
-                foreach(var item in Assemble.partlist)
-                {
-                    MainWindow.partass = new partassembly_
+                    //List<partassembly_> newl = new List<partassembly_>();
+                    //foreach (basepart_ d in Assemble.partlist)
+                    //    newl.Add(new partassembly_
+                    //    {
+                    //        partid = d.id,
+                    //        assemblyid = beb.id
+                    //    });
+
+                    //beb.partassembly_.Clear();
+                    //beb.partassembly_ = newl;
+                    
+                    for (int i = 0; i < beb.partassembly_.Count(); i++)
                     {
-                        partid = item.id,
-                        assemblyid = MainWindow.assemble.id
+                        var g = beb.partassembly_.FirstOrDefault(p => p.partid != Assemble.partlist[i].id && p.basepart_.parttypeid == Assemble.partlist[i].parttypeid);
+                        if (g != null)
+                            g.partid = Assemble.partlist[i].id;
+                        
                     };
-                    Core.Context.partassembly_.Add(MainWindow.partass);      
+                    Core.Context.SaveChanges();
                 }
-                Core.Context.SaveChanges();
-                NavigationService.Navigate(new SavedPage());
+                else
+                {
+                    MainWindow.assemble = new assembly_
+                    {
+                        name = NameTB.Text,
+                        author = AuthorTB.Text
+                    };
+                    Core.Context.assembly_.Add(MainWindow.assemble);
+                    Core.Context.SaveChanges();
+                    foreach (var item in Assemble.partlist)
+                    {
+                        MainWindow.partass = new partassembly_
+                        {
+                            partid = item.id,
+                            assemblyid = MainWindow.assemble.id
+                        };
+                        Core.Context.partassembly_.Add(MainWindow.partass);
+                    }
+                    Core.Context.SaveChanges();
+                    NavigationService.Navigate(new SavedPage());
+                }
             }
             else
             {
