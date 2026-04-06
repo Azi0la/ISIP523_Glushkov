@@ -42,6 +42,16 @@ namespace Pr_PC_Builder.Pages
 
         private void SavedList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            assembly_ sel = SavedList.SelectedItem as assembly_;
+            Core.a = sel.author;
+            Core.n = sel.name;
+
+            Assemble.partlist = Core.Context.partassembly_
+                .Where(p => p.assemblyid == sel.id)
+                .Select(g=>g.basepart_).ToList(); 
+
+
+            NavigationService.Navigate(new MainPage());
             
         }
 

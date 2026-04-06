@@ -26,20 +26,20 @@ namespace Pr_PC_Builder.Pages
         public MainPage()
         {
             InitializeComponent();
-            UnitList.ItemsSource = MainWindow.ass.partlist;
+            UnitList.ItemsSource = Assemble.partlist;
 
-            cpu_ cpu = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 1).cpu_;
-            gpu_ gpu = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 2).gpu_;
-            ram_ ram = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 3).ram_;
-            motherboard_ motherboard = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 4).motherboard_;
-            case_ casee = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 5).case_;
-            powersupply_ powersupply = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 6).powersupply_;
-            processorcooler_ processorcooler = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 7).processorcooler_;
-            storagedevice_ storagedevice = MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == 8).storagedevice_;
+            cpu_ cpu = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 1).cpu_;
+            gpu_ gpu = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 2).gpu_;
+            ram_ ram = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 3).ram_;
+            motherboard_ motherboard = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 4).motherboard_;
+            case_ casee = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 5).case_;
+            powersupply_ powersupply = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 6).powersupply_;
+            processorcooler_ processorcooler = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 7).processorcooler_;
+            storagedevice_ storagedevice = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 8).storagedevice_;
 
             decimal money = 0;
 
-            foreach( var item in MainWindow.ass.partlist)
+            foreach( var item in Assemble.partlist)
             {
                 money += item.price;
             }
@@ -88,7 +88,7 @@ namespace Pr_PC_Builder.Pages
         }
         private void Change_Click(object sender, RoutedEventArgs e)
         {
-            Button btn = (Button)sender;
+            Button btn = sender as Button;
             basepart_ selectedPart = btn.DataContext as basepart_;
             parttype_ pt = Types.FirstOrDefault(type => type.id == selectedPart.parttypeid);
             NavigationService.Navigate(new PartPage(pt));
@@ -106,7 +106,7 @@ namespace Pr_PC_Builder.Pages
                 };
                 Core.Context.assembly_.Add(MainWindow.assemble);
                 Core.Context.SaveChanges();
-                foreach(var item in MainWindow.ass.partlist)
+                foreach(var item in Assemble.partlist)
                 {
                     MainWindow.partass = new partassembly_
                     {

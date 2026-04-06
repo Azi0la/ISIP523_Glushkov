@@ -40,9 +40,9 @@ namespace Pr_PC_Builder.Pages
          {
             
             basepart_ selectpart = TypeList.SelectedItem as basepart_;
-            int index = MainWindow.ass.partlist.IndexOf(MainWindow.ass.partlist.FirstOrDefault(p => p.parttypeid == selectpart.parttypeid));
-            MainWindow.ass.partlist.RemoveAt(index);
-            MainWindow.ass.partlist.Insert(index, selectpart);
+            int index = Assemble.partlist.IndexOf(Assemble.partlist.FirstOrDefault(p => p.parttypeid == selectpart.parttypeid));
+            Assemble.partlist.RemoveAt(index);
+            Assemble.partlist.Insert(index, selectpart);
             
             
 
