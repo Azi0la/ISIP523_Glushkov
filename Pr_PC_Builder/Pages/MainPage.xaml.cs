@@ -23,26 +23,28 @@ namespace Pr_PC_Builder.Pages
 
         public List<parttype_> Types = Core.Context.parttype_.ToList();
         public List<assembly_> Users = Core.Context.assembly_.ToList();
+        public List<partassembly_> prtass_ = Core.Context.partassembly_.ToList();
         
         public MainPage()
         {
             InitializeComponent();
-            UnitList.ItemsSource = Assemble.partlist;
+            UnitList.ItemsSource = Core.ass.partlist;
             NameTB.Text = Core.n;
             AuthorTB.Text = Core.a;
+            var ass2 = Core.ass.partlist;
 
-            cpu_ cpu = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 1).cpu_;
-            gpu_ gpu = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 2).gpu_;
-            ram_ ram = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 3).ram_;
-            motherboard_ motherboard = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 4).motherboard_;
-            case_ casee = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 5).case_;
-            powersupply_ powersupply = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 6).powersupply_;
-            processorcooler_ processorcooler = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 7).processorcooler_;
-            storagedevice_ storagedevice = Assemble.partlist.FirstOrDefault(p => p.parttypeid == 8).storagedevice_;
+            cpu_ cpu = ass2.FirstOrDefault(p => p.parttypeid == 1).cpu_;
+            gpu_ gpu = ass2.FirstOrDefault(p => p.parttypeid == 2).gpu_;
+            ram_ ram = ass2.FirstOrDefault(p => p.parttypeid == 3).ram_;
+            motherboard_ motherboard = ass2.FirstOrDefault(p => p.parttypeid == 4).motherboard_;
+            case_ casee = ass2.FirstOrDefault(p => p.parttypeid == 5).case_;
+            powersupply_ powersupply = ass2.FirstOrDefault(p => p.parttypeid == 6).powersupply_;
+            processorcooler_ processorcooler = ass2.FirstOrDefault(p => p.parttypeid == 7).processorcooler_;
+            storagedevice_ storagedevice = ass2.FirstOrDefault(p => p.parttypeid == 8).storagedevice_;
 
             decimal money = 0;
 
-            foreach( var item in Assemble.partlist)
+            foreach( var item in ass2)
             {
                 money += item.price;
             }
@@ -94,6 +96,8 @@ namespace Pr_PC_Builder.Pages
             Button btn = sender as Button;
             basepart_ selectedPart = btn.DataContext as basepart_;
             parttype_ pt = Types.FirstOrDefault(type => type.id == selectedPart.parttypeid);
+            Core.a = AuthorTB.Text;
+            Core.n = NameTB.Text;
             NavigationService.Navigate(new PartPage(pt));
         }
 
@@ -101,32 +105,24 @@ namespace Pr_PC_Builder.Pages
         {
             if (!String.IsNullOrEmpty(NameTB.Text) && !String.IsNullOrEmpty(AuthorTB.Text))
             {
+                Core.a = AuthorTB.Text;
+                Core.n = NameTB.Text;
                 assembly_ beb = Users.FirstOrDefault(p => p.name == NameTB.Text && p.author == AuthorTB.Text);
                 //List<partassembly_> changelist = Core.Context.partassembly_.Where(p => p.assembly_ == beb).ToList();
                 if (beb != null)
                 {
-                    //List<partassembly_> newl = new List<partassembly_>();
-                    //foreach (basepart_ d in Assemble.partlist)
-                    //    newl.Add(new partassembly_
-                    //    {
-                    //        partid = d.id,
-                    //        assemblyid = beb.id
-                    //    });
-
-                    //beb.partassembly_.Clear();
-                    //beb.partassembly_ = newl;
-                    
-                    for (int i = 0; i < beb.partassembly_.Count(); i++)
+                    List<partassembly_> newl = prtass_.Where(p => p.assemblyid == beb.id).ToList();
+                    foreach (partassembly_ d in newl)
                     {
-                        var g = beb.partassembly_.FirstOrDefault(p => p.partid != Assemble.partlist[i].id && p.basepart_.parttypeid == Assemble.partlist[i].parttypeid);
-                        if (g != null)
-                            g.partid = Assemble.partlist[i].id;
-                        
-                    };
+                        d.partid = Core.ass.partlist.FirstOrDefault(p => p.parttypeid == d.basepart_.parttypeid).id;
+                    }
                     Core.Context.SaveChanges();
+                    MessageBox.Show("Сборка успешно сохранена!");
                 }
+
                 else
                 {
+
                     MainWindow.assemble = new assembly_
                     {
                         name = NameTB.Text,
@@ -134,7 +130,7 @@ namespace Pr_PC_Builder.Pages
                     };
                     Core.Context.assembly_.Add(MainWindow.assemble);
                     Core.Context.SaveChanges();
-                    foreach (var item in Assemble.partlist)
+                    foreach (var item in Core.ass.partlist)
                     {
                         MainWindow.partass = new partassembly_
                         {
@@ -146,6 +142,7 @@ namespace Pr_PC_Builder.Pages
                     Core.Context.SaveChanges();
                     NavigationService.Navigate(new SavedPage());
                 }
+
             }
             else
             {

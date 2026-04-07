@@ -9,7 +9,9 @@ namespace Pr_PC_Builder
 {
     public class Assemble
     {
-        public static List<basepart_> partlist = new List<basepart_> 
+        //public string author = "";
+        //public string buildname = "";
+        public List<basepart_> partlist = new List<basepart_> 
         {
             new basepart_ {name = "Пусто", manufacturerid = 100, parttypeid = 1, image = "/Images/monke.jpg", price = 0},
             new basepart_ {name = "Пусто", manufacturerid = 100, parttypeid = 2, image = "/Images/monke.jpg", price = 0}, 

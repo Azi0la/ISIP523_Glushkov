@@ -20,7 +20,6 @@ namespace Pr_PC_Builder
     /// </summary>
     public partial class MainWindow : Window
     {
-        
         public static assembly_ assemble;
         public static partassembly_ partass;
         public MainWindow()

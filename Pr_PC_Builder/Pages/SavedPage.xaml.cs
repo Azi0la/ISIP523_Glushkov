@@ -46,7 +46,7 @@ namespace Pr_PC_Builder.Pages
             Core.a = sel.author;
             Core.n = sel.name;
 
-            Assemble.partlist = Core.Context.partassembly_
+            Core.ass.partlist = Core.Context.partassembly_
                 .Where(p => p.assemblyid == sel.id)
                 .Select(g=>g.basepart_).ToList(); 
 
