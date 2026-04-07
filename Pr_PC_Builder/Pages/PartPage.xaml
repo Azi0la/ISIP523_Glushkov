@@ -27,6 +27,13 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
+        <StackPanel>
+            <Label Margin="10, 10, 0, 0" FontSize="20" Content="Поиск:"/>
+            <TextBox x:Name="SearchTB" Margin="10, 0, 10, 0" Height="30" TextChanged="SearchTB_TextChanged" ></TextBox>
+            <Label Margin="10, 10, 0, 0" FontSize="20" Content="Фильтр"/>
+            <ComboBox x:Name="ManufactCB" Margin="10, 0, 10, 0" Height="30" SelectionChanged="ManufactCB_SelectionChanged"/>
+        </StackPanel>
+
             <Button x:Name="BackBtn" Width="100" Height="75" Content="Назад" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="15" Click="BackBtn_Click"/>
     </Grid>
 </Page>
